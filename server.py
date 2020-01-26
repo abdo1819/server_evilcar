@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from flask import Flask,jsonify,request,render_template
 import json
 app = Flask(__name__)
@@ -40,4 +42,4 @@ def get_violations():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000,debug =True)
+    app.run(port=5000)
