@@ -43,7 +43,8 @@ def get_violations():
 
 @app.route("/")
 def hello():
-    return "Hello from Python!"
+    return render_template('index.html',violations_list = violations_list)
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
