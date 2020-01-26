@@ -35,7 +35,9 @@ def get_violations_json():
     objects =[]
     for string in violations_list : 
         objects.append( json.loads(string))
-    return jsonify(objects)
+    response = jsonify(objects)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 @app.route('/violations', methods=['GET'])
 def get_violations():
