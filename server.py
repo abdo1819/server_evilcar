@@ -9,6 +9,7 @@ app = Flask(__name__)
 
 violations_list= []
 speedLimit = 0.1
+obstacles = []
 
 @app.route('/speed',methods=["GET"])
 def getSpeed():
@@ -24,7 +25,6 @@ def report():
         #TODO: do more than printing the data here
         violations_list.append(request.get_data(as_text=True))
         print(violations_list)
-        print("really?!")
         return "thanks for using our service"
     else:
         return "use post to post your violation"
@@ -47,6 +47,11 @@ def get_violations():
 def hello():
     return render_template('index.html',violations_list = violations_list)
 
+@app.route("/obstacles",methods=['GET'])
+def send_obstacles():
+    print(request.args.get('long'),request.args.get('lat'))
+    obstacles.append((request.args.get('long'),request.args.get('lat')))
+    return "Done :D"
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
