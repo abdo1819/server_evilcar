@@ -46,4 +46,5 @@ def root():
     return "hello"
 
 if __name__ == "__main__":
-    app.run(port=5000)
+	port = int(os.environ.get('PORT',8000))
+    app.run(port=port)
