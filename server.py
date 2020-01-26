@@ -2,6 +2,8 @@
 
 from flask import Flask,jsonify,request,render_template
 import json
+import logging
+
 app = Flask(__name__)
 
 
@@ -37,9 +39,11 @@ def get_violations_json():
 
 @app.route('/violations', methods=['GET'])
 def get_violations():
-    print (violations_list)
     return render_template('index.html',violations_list = violations_list)
 
+@app.route('/', methods=['GET'])
+def root():
+    return "hello"
 
 if __name__ == "__main__":
     app.run(port=5000)
