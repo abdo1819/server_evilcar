@@ -51,7 +51,7 @@ def hello():
 def send_obstacles():
     print(request.args.get('long'),request.args.get('lat'))
     obstacles.append((request.args.get('long'),request.args.get('lat')))
-    return "Done :D"
+    return jsonify(obstacles)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
