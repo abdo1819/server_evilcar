@@ -39,25 +39,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Self Reporting Car C-Panel </title>
+    <title>Self Reporting Car C-Panel</title>
 </head>
 
 <body style="text-align: center ;margin: 0px; background-color: white;">
-<div style="text-align: center;">
+    <div style="text-align: center;">
         <div class="topnav">
-            <a href="{{url_for('get_violations_json')}}">Violations list </a>
+            <a href="index.html">Violations list</a>
         </div>
-        <div id="root">
-        {% for element in violations_list %}
-            <div class="content">
-            <p>ID: {{element.id}} </p>
-            <p>Longitude:  {{element.longitude}} </p>
-            <p>Latitude:  {{element.latitude}} </p>
-            <p>Speed:  {{element.speed}} </p>
-            <p>Date & Time:  {{element.time}} </p>
-            </div>    
-        {% endfor %}
-    </div>
-    </div>
+        <div id="root"></div>
+        <script>
+            const URL = "http://evilcar.herokuapp.com/violations/json"
+            let obj = {}
+            fetch(URL)
+                .then(data => data.json())
+                .then((res) => {
+                    res.forEach(element => {
+                        let e = document.createElement("div")
+                        e.setAttribute("class", "content")
+                        e.innerHTML = "<p>ID: " + element.id + "</p>"
+                            + "<p>Longitude: " + element.longitude + "</p>"
+                            + "<p>Latitude: " + element.latitude + "</p>"
+                            + "<p>Speed: " + element.speed + "</p>"
+                            + "<p>Date & Time: " + element.time + "</p>"
+
+                        let root = document.getElementById("root")
+                        root.appendChild(e)
+                    });
+                })
+        </script>
 </body>
 </html>
