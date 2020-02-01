@@ -63,6 +63,7 @@ def get_violations_json_():
     json_catagory = [c.serialize for c in qryresult]
     print("sending json")
     print(json_catagory)
+    response.headers.add('Access-Control-Allow-Origin', '*')
     return jsonify(json_catagory)
 
 @app.route('/violations', methods=['GET'])
