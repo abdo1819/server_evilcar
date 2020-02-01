@@ -77,9 +77,14 @@ def hello():
     return render_template('index.html',violations_list = violations_list)
 
 @app.route("/obstacles",methods=['GET'])
-def send_obstacles():
+def get_obstacles():
     print(request.args.get('long'),request.args.get('lat'))
     obstacles.append((request.args.get('long'),request.args.get('lat')))
+    return "thanks for reporting road"
+
+@app.route("/obstacles/json",methods=['GET'])
+def send_obstacles_():
+    print(request.args.get('long'),request.args.get('lat'))
     return jsonify(obstacles)
 
 if __name__ == "__main__":
