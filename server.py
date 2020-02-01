@@ -63,7 +63,7 @@ def get_violations_json_():
     json_catagory = [c.serialize for c in qryresult]
     print("sending json")
     print(json_catagory)
-    response = jsonify(json_catagory)
+    response = jsonify(json_catagory.reverse())
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
