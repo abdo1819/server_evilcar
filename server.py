@@ -4,8 +4,20 @@ from flask import Flask,jsonify,request,render_template
 import json
 import logging
 
+from sqlalchemy import create_engine, asc, desc
+from sqlalchemy.orm import sessionmaker
+from db_setup import Base, Violation
+import datetime
+
 app = Flask(__name__)
 
+
+engine = create_engine('sqlite:///violations.db?check_same_thread=False')
+Base.metadata.create_all(engine)
+
+
+DBSession = sessionmaker(bind=engine)
+session = DBSession()
 
 violations_list= []
 speedLimit = 0.1
@@ -25,6 +37,10 @@ def report():
         #TODO: do more than printing the data here
         violations_list.append(request.get_data(as_text=True))
         print(violations_list)
+        data = json.loads(request.get_data())
+        v = Violation(car_id=data['id'],longitude=data['longitude'],latitude=data['latitude'],speed=data['speed'],time=datetime.datetime.now())
+        session.add(v)
+        session.commit()
         return "thanks for using our service"
     else:
         return "use post to post your violation"
@@ -36,8 +52,18 @@ def get_violations_json():
     for string in violations_list : 
         objects.append( json.loads(string))
     response = jsonify(objects)
+    print("sending json")
+    print(response)
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
+
+@app.route('/violations_/json',methods=["GET"])
+def get_violations_json_():
+    qryresult = session.query(Violation).all()
+    json_catagory = [c.serialize for c in qryresult]
+    print("sending json")
+    print(json_catagory)
+    return jsonify(json_catagory)
 
 @app.route('/violations', methods=['GET'])
 def get_violations():
