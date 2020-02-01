@@ -11,6 +11,8 @@ violations_list= []
 speedLimit = 0.1
 obstacles = []
 
+print("NOTE: Remember to edit the javascript hardcoded url")
+
 @app.route('/speed',methods=["GET"])
 def getSpeed():
     # return request.args.get('long')+" - "+request.args.get('lat')
