@@ -49,7 +49,11 @@
         </div>
         <div id="root"></div>
         <script>
+<<<<<<< HEAD
             const URL = "http://192.168.1.8:5000/violations/json"
+=======
+            const URL = "https://evilcar.herokuapp.com/violations_/json"
+>>>>>>> 5e7c6c13657c5fc439fe89e10d20f8e6a83d8d0f
             let obj = {}
             fetch(URL)
                 .then(data => data.json())
@@ -57,7 +61,7 @@
                     res.forEach(element => {
                         let e = document.createElement("div")
                         e.setAttribute("class", "content")
-                        e.innerHTML = "<p>ID: " + element.id + "</p>"
+                        e.innerHTML = "<p>ID: " + element.car_id + "</p>"
                             + "<p>Longitude: " + element.longitude + "</p>"
                             + "<p>Latitude: " + element.latitude + "</p>"
                             + "<p>Speed: " + element.speed + "</p>"
