@@ -81,7 +81,7 @@ def hello():
 @app.route("/obstacles",methods=['GET'])
 def get_obstacles():
     print(request.args.get('long'),request.args.get('lat'))
-    obstacles.append((request.args.get('long'),request.args.get('lat')))
+    obstacles.append((request.args.get('long'),request.args.get('lat'),datetime.datetime.now()))
     return "thanks for reporting road"
 
 @app.route("/obstacles/json",methods=['GET'])
