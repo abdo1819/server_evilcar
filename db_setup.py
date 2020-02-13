@@ -1,6 +1,5 @@
 from pymongo import MongoClient
 
-# predefined enum like class to avoid string typos
 def _create_database(URI,db_name):
     """
         Warning: This function is intended only to be used inside the scope of this file
