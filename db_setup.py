@@ -3,7 +3,7 @@ from pymongo import MongoClient
 def _create_database(URI,db_name):
     """
         Warning: This function is intended only to be used inside the scope of this file
-        you should use it outside
+        you should not use it outside
         Usage: _create_database(URI,db_name) return a database object
         Example: db = _create_database(URI,db_name)
     """

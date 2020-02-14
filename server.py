@@ -37,10 +37,8 @@ def getSpeed():
                                                         names.starting_latitude:lat})
     print({names.starting_longitude:longitude,names.starting_latitude:lat})
     print(data)
-    result = {}
-    for i in data :
-        result = i
-    return result
+    result = [i for i in data]
+    return result[0]
     # return jsonify(speed = speedLimit,endingLong=longitude+1,endingLat=lat+1)
 
 @app.route('/report',methods=["POST"])
