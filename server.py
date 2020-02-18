@@ -106,7 +106,6 @@ def add_user():
         u = user(car_id=data['car_id'],user_id=data['user_id'])
         session.add(u)
         session.commit()
-        data_manager.add_data(names.violations_collection, data)
         return "thanks for using our service"
     else:
         return "use post to post your violation"
