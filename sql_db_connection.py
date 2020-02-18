@@ -1,23 +1,16 @@
 import sqlalchemy
 import cx_Oracle
 
-host="localhost"
-port=1521
-sid='xe'
-user='abdullah'
-password='a'
-sid = cx_Oracle.makedsn(host, port, sid=sid)
+def create_engine(database_type,host,port,sid,user,password):
 
-connection_string = sqlalchemy.engine.url.URL("oracle", user, password, sid)
-engine =  sqlalchemy.create_engine(
-            connection_string,
-            convert_unicode=False,
-            pool_recycle=10,
-            pool_size=50,
-            echo=True
-        )
+    sid = cx_Oracle.makedsn(host, port, sid=sid)
 
-result = engine.execute('select * from TEST')
-
-for row in result:
-    print (str(row).split("'")[1])
+    connection_string = sqlalchemy.engine.url.URL(database_type, user, password, sid)
+    engine =  sqlalchemy.create_engine(
+                connection_string,
+                convert_unicode=False,
+                pool_recycle=10,
+                pool_size=50,
+                echo=True
+            )
+    return engine

@@ -1,9 +1,12 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Integer
 Base = declarative_base()
 
 class user(Base):
     __tablename__ = 'USERS'
+    id = Column(Integer,primary_key=True,
+                unique=True,
+                autoincrement=True)
     car_id = Column(String)
     user_id = Column(String)                                   
     @property
