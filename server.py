@@ -101,6 +101,7 @@ def get_obstacles_():
 def add_user():
     if request.method == "POST":
         # TODO: do more than printing the data here
+        print("request is:", request.get_data())
         data = json.loads(request.get_data(as_text=True))
         u = user(car_id=data['car_id'],user_id=data['user_id'])
         session.add(u)
