@@ -2,7 +2,7 @@
 import os
 from flask import Flask, jsonify, request, render_template
 import json
-from model.user import user
+from model.user_car import UserCar
 import sql_db_connection
 import db_setup
 import datetime
@@ -103,7 +103,7 @@ def add_user():
         # TODO: do more than printing the data here
         print("request is:", request.get_data())
         data = json.loads(request.get_data(as_text=True))
-        u = user(car_id=data['car_id'],user_id=data['user_id'])
+        u = UserCar(car_id=data['car_id'],user_id=data['user_id'])
         session.add(u)
         session.commit()
         return "thanks for using our service"
