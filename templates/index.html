@@ -49,7 +49,7 @@
         </div>
         <div id="root"></div>
         <script>
-            const URL = "https://evilcar.herokuapp.com/violations_/json"
+            const URL = "http://0.0.0.0:5000/violations/json"
             let obj = {}
             fetch(URL)
                 .then(data => data.json())
@@ -57,9 +57,9 @@
                     res.forEach(element => {
                         let e = document.createElement("div")
                         e.setAttribute("class", "content")
-                        e.innerHTML = "<p>ID: " + element.car_id + "</p>"
-                            + "<p>Longitude: " + element.longitude + "</p>"
-                            + "<p>Latitude: " + element.latitude + "</p>"
+                        e.innerHTML = "<p>ID: " + element.id + "</p>"
+                            + "<p>Longitude: " + element.long + "</p>"
+                            + "<p>Latitude: " + element.lat + "</p>"
                             + "<p>Speed: " + element.speed + "</p>"
                             + "<p>Date & Time: " + element.time + "</p>"
 

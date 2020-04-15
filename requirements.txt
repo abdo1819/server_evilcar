@@ -1,2 +1,4 @@
 Flask
-sqlalchemy
+pymongo
+SQLAlchemy
+cx_Oracle
